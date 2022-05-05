@@ -212,7 +212,7 @@
             </div>
         </div>
 
-        <section id="page">
+        <section id="page" {block:IndexPage}class="h-feed"{/block:IndexPage}{block:PermalinkPage}class="h-entry"{/block:PermalinkPage}>
             <div class="header-wrapper
                 {block:HideTitle}{block:HideDescription}no-title-desc {/block:HideDescription}{/block:HideTitle}
                 {block:HideHeaderImage}no-image {/block:HideHeaderImage}
@@ -232,16 +232,16 @@
                     {/block:ShowHeaderImage}
 
                     <div class="blog-title-wrapper content">
-                        <figure class="avatar-wrapper{block:IndexPage} animate{/block:IndexPage}">
-                            <a href="/" style="background-image: url({PortraitURL-128})" class="user-avatar"><img src="{PortraitURL-128}"{block:IfLazyImageLoading} loading="lazy"{/block:IfLazyImageLoading} alt="" class="print-only invisible"></a>
+                        <figure class="avatar-wrapper{block:IndexPage} animate{/block:IndexPage}  p-author h-card">
+                            <a href="/" style="background-image: url({PortraitURL-128})" class="user-avatar" ><img src="{PortraitURL-128}"{block:IfLazyImageLoading} loading="lazy"{/block:IfLazyImageLoading} alt="{URLEncodedName}" class="print-only invisible"></a>
                         </figure>
 
                         <div class="title-group{block:IndexPage} animate{/block:IndexPage}">
                             {block:ShowTitle}
-                            <h1 class="blog-title"><a href="/">{Title}</a></h1>
+                            <h1 class="blog-title{block:IndexPage} p-name{/block:IndexPage}"><a href="/">{Title}</a></h1>
                             {/block:ShowTitle}
                             {block:ShowDescription}
-                            <span class="description">
+                            <span class="description{block:IndexPage} p-summary{/block:IndexPage}">
                                 {Description}
                             </span>
                             {/block:ShowDescription}
@@ -323,14 +323,14 @@
                     <div class="main">
                         {block:Posts inlineMediaWidth="700" inlineNestedMediaWidth="700"}
                                 <article class="{block:Text}text {/block:Text}{block:Photoset}photoset {/block:Photoset}{block:Photo}photo {/block:Photo}{block:RebloggedFrom}reblogged {/block:RebloggedFrom}{block:Quote}quote {/block:Quote}{block:Link}link {/block:Link}{block:Chat}chat {/block:Chat}{block:Audio}audio {/block:Audio}{block:Video}video {/block:Video}{block:Answer}answer {/block:Answer}{block:Date}not-page post-{PostID}{/block:Date} {block:PermalinkPage} active exposed{/block:PermalinkPage}" {block:Date}data-post-id="{PostID}"{/block:Date} {block:SupplyLogging}data-supply-logging='{positions}'{/block:SupplyLogging}>
-                                    <div class="post-wrapper clearfix">
+                                    <div class="post-wrapper clearfix{block:IndexPage} h-entry{/block:IndexPage}">
 
                                         <header class="post-header {block:Actions}show{/block:Actions}">
                                             {block:LikesPage}
-                                                <a class="post-blog" href="{Permalink}"><img class="blog-avatar" src="{PostBlogPortraitURL-30}"{block:IfLazyImageLoading} loading="lazy"{/block:IfLazyImageLoading} data-blog-card-username="{PostBlogName}">{PostBlogName}</a>
+                                                <a class="post-blog p-author h-card" href="{Permalink}"><img class="blog-avatar" src="{PostBlogPortraitURL-30}"{block:IfLazyImageLoading} loading="lazy"{/block:IfLazyImageLoading} data-blog-card-username="{PostBlogName}">{PostBlogName}</a>
                                             {/block:LikesPage}
                                             {block:RebloggedFrom}
-                                                <a class="reblog-link" href="{ReblogParentURL}" data-blog-card-username="{ReblogParentName}"><i class="reblog_sm"></i>{ReblogParentName}</a>
+                                                <a class="reblog-link u-repost-of" href="{ReblogParentURL}" data-blog-card-username="{ReblogParentName}"><i class="reblog_sm"></i>{ReblogParentName}</a>
                                             {/block:RebloggedFrom}
                                             {block:Actions}
                                                 <div class="post-cta-action">
@@ -342,38 +342,38 @@
                                         <section class="post">
                                             {block:Text}
                                             <div class="post-content">
-                                                {block:Title}<h2 class="title"><a href="{Permalink}">{Title}</a></h2>{/block:Title}
+                                                {block:Title}<h2 class="title p-name"><a href="{Permalink}" class="u-url">{Title}</a></h2>{/block:Title}
                                                 {block:NotReblog}
-                                                    <div class="body-text">{Body}</div>
+                                                    <div class="body-text e-content">{Body}</div>
                                                 {/block:NotReblog}
                                                 {block:RebloggedFrom}
                                                     <div class="reblog-list">
                                                         {block:Reblogs}
-                                                            <div class="post-reblog-trail-item{block:isOriginalEntry} original-reblog-content{/block:isOriginalEntry}">
-                                                                <div class="post-reblog-header">
+                                                            <div class="post-reblog-trail-item u-repost-of h-cite{block:isOriginalEntry} original-reblog-content{/block:isOriginalEntry}">
+                                                                <div class="post-reblog-header p-author h-card">
                                                                     <div class="post-avatar">
                                                                         <div class="post-avatar-wrapper">
                                                                             {block:IsActive}
-                                                                            <a class="post-avatar-link{block:isNotOriginalEntry} sub-icon-reblog{/block:isNotOriginalEntry}" href="{Permalink}" target="_blank">
-                                                                                <img class="post-avatar-image" src="{PortraitURL-64}"{block:IfLazyImageLoading} loading="lazy"{/block:IfLazyImageLoading}>
+                                                                            <a class="post-avatar-link u-url {block:isNotOriginalEntry} sub-icon-reblog{/block:isNotOriginalEntry}" href="{Permalink}" target="_blank">
+                                                                                <img class="post-avatar-image u-photo" src="{PortraitURL-64}"{block:IfLazyImageLoading} loading="lazy"{/block:IfLazyImageLoading}>
                                                                             </a>
                                                                             {/block:IsActive}
                                                                             {block:IsDeactivated}
                                                                             <span class="inactive reblog-avatar{block:isNotOriginalEntry} sub-icon-reblog{/block:isNotOriginalEntry}">
-                                                                                <img class="post-avatar-image" src="{PortraitURL-64}"{block:IfLazyImageLoading} loading="lazy"{/block:IfLazyImageLoading}>
+                                                                                <img class="post-avatar-image u-photo" src="{PortraitURL-64}"{block:IfLazyImageLoading} loading="lazy"{/block:IfLazyImageLoading}>
                                                                             </span>
                                                                             {/block:IsDeactivated}
                                                                         </div>
                                                                     </div>
                                                                     {block:IsActive}
-                                                                        <a target="_blank" class="post-tumblelog-name" href="{Permalink}">{Username}</a>
+                                                                        <a target="_blank" class="post-tumblelog-name u-url p-name" href="{Permalink}">{Username}</a>
                                                                     {/block:IsActive}
                                                                     {block:IsDeactivated}
-                                                                        <span class="inactive post-tumblelog-name">{Username}</span>
+                                                                        <span class="inactive post-tumblelog-name p-name">{Username}</span>
                                                                     {/block:IsDeactivated}
                                                                 </div>
                                                                 <div class="post-reblog-content">
-                                                                    <div class="post-body">
+                                                                    <div class="post-body e-content">
                                                                         {Body}
                                                                     </div>
                                                                 </div>
@@ -388,11 +388,11 @@
                                             <figure class="post-content {block:HighRes}high-res{/block:HighRes}{block:Caption} with-caption{/block:Caption}" data-photo-width="{PhotoWidth-HighRes}">
                                                 <div class="photo-wrapper">
                                                     <div class="photo-wrapper-inner">
-                                                        {LinkOpenTag}<img src="{PhotoURL-HighRes}"{block:IfLazyImageLoading} loading="lazy"{/block:IfLazyImageLoading} alt="{PhotoAlt}" width="{PhotoWidth-HighRes}" height="{PhotoHeight-HighRes}"{block:LivePhoto}data-live-photo="{LivePhotoURL}" data-live-photo-still-image-time="{LivePhotoStillImageTime}"{/block:LivePhoto}>{LinkCloseTag}
+                                                        {LinkOpenTag}<img class="u-photo" src="{PhotoURL-HighRes}"{block:IfLazyImageLoading} loading="lazy"{/block:IfLazyImageLoading} alt="{PhotoAlt}" width="{PhotoWidth-HighRes}" height="{PhotoHeight-HighRes}"{block:LivePhoto}data-live-photo="{LivePhotoURL}" data-live-photo-still-image-time="{LivePhotoStillImageTime}"{/block:LivePhoto}>{LinkCloseTag}
                                                     </div>
                                                 </div>
                                                 {block:NotReblog}
-                                                    <figcaption class="caption">
+                                                    <figcaption class="caption e-content">
                                                         {Caption}
                                                     </figcaption>
                                                 {/block:NotReblog}
@@ -481,73 +481,73 @@
                                             {/block:Photoset}
 
                                             {block:Quote}
-                                            <div class="post-content">
+                                            <div class="post-content e-content">
                                                 <blockquote class="{Length}">
                                                     {Quote}
                                                 </blockquote>
                                                 {block:Source}
-                                                <div class="source">{Source}</div>
+                                                <div class="source"><cite class="u-quotation-of h-cite">{Source}</cite></div>
                                                 {/block:Source}
                                             </div>
                                             {/block:Quote}
 
 
                                             {block:Link}
-                                            <div class="post-content{block:Description} with-caption{/block:Description}{block:Thumbnail} with-thumbnail{/block:Thumbnail}">
+                                            <div class="post-content{block:IndexPage} h-entry{/block:IndexPage}{block:Description} with-caption{/block:Description}{block:Thumbnail} with-thumbnail{/block:Thumbnail}">
                                                 <div class="link-wrapper">
-                                                    <a {Target} href="{URL}" class="link">
+                                                    <a {Target} href="{URL}" class="link u-bookmark-of h-cite">
                                                         {block:Thumbnail}
-                                                        <div class="link-thumbnail"><img src="{Thumbnail-HighRes}" alt="" /></div>
+                                                        <div class="link-thumbnail"><img class="u-photo" src="{Thumbnail-HighRes}" alt="" /></div>
                                                         {/block:Thumbnail}
                                                         <div class="link-text-wrapper clearfix">
                                                             <div class="link-text">
                                                                 {block:Host}
                                                                 <div class="link-host">{Host}</div>
                                                                 {/block:Host}
-                                                                <h2 class="link-title">{Name}</h2>
+                                                                <h2 class="link-title p-name">{Name}</h2>
                                                                 {block:Excerpt}
-                                                                <div class="link-excerpt">{Excerpt}</div>
+                                                                <div class="link-excerpt p-summary">{Excerpt}</div>
                                                                 {/block:Excerpt}
                                                                 {block:Author}
-                                                                <div class="link-author">{Author}</div>
+                                                                <div class="link-author p-author">{Author}</div>
                                                                 {/block:Author}
                                                             </div>
                                                         </div>
                                                     </a>
                                                 </div>
                                                 {block:NotReblog}
-                                                    <div class="caption">
+                                                    <div class="caption e-summary">
                                                         {Description}
                                                     </div>
                                                 {/block:NotReblog}
                                                 {block:RebloggedFrom}
                                                     <div class="reblog-list">
                                                         {block:Reblogs}
-                                                            <div class="post-reblog-trail-item{block:isOriginalEntry} original-reblog-content{/block:isOriginalEntry}">
-                                                                <div class="post-reblog-header">
+                                                            <div class="post-reblog-trail-item u-repost-of h-cite {block:isOriginalEntry} original-reblog-content{/block:isOriginalEntry}">
+                                                                <div class="post-reblog-header p-author h-card">
                                                                     <div class="post-avatar">
                                                                         <div class="post-avatar-wrapper">
                                                                             {block:IsActive}
-                                                                            <a class="post-avatar-link{block:isNotOriginalEntry} sub-icon-reblog{/block:isNotOriginalEntry}" href="{Permalink}" target="_blank">
-                                                                                <img class="post-avatar-image" src="{PortraitURL-64}"{block:IfLazyImageLoading} loading="lazy"{/block:IfLazyImageLoading}>
+                                                                            <a class="post-avatar-link u-url p-name {block:isNotOriginalEntry} sub-icon-reblog{/block:isNotOriginalEntry}" href="{Permalink}" target="_blank">
+                                                                                <img class="post-avatar-image u-photo" src="{PortraitURL-64}"{block:IfLazyImageLoading} loading="lazy"{/block:IfLazyImageLoading}>
                                                                             </a>
                                                                             {/block:IsActive}
                                                                             {block:IsDeactivated}
                                                                             <span class="inactive reblog-avatar{block:isNotOriginalEntry} sub-icon-reblog{/block:isNotOriginalEntry}">
-                                                                                <img class="post-avatar-image" src="{PortraitURL-64}"{block:IfLazyImageLoading} loading="lazy"{/block:IfLazyImageLoading}>
+                                                                                <img class="post-avatar-image u-photo" src="{PortraitURL-64}"{block:IfLazyImageLoading} loading="lazy"{/block:IfLazyImageLoading}>
                                                                             </span>
                                                                             {/block:IsDeactivated}
                                                                         </div>
                                                                     </div>
                                                                     {block:IsActive}
-                                                                        <a target="_blank" class="post-tumblelog-name" href="{Permalink}">{Username}</a>
+                                                                        <a target="_blank" class="post-tumblelog-name u-url p-name" href="{Permalink}">{Username}</a>
                                                                     {/block:IsActive}
                                                                     {block:IsDeactivated}
-                                                                        <span class="inactive post-tumblelog-name">{Username}</span>
+                                                                        <span class="inactive post-tumblelog-name p-name">{Username}</span>
                                                                     {/block:IsDeactivated}
                                                                 </div>
                                                                 <div class="post-reblog-content">
-                                                                    <div class="post-body">
+                                                                    <div class="post-body e-content">
                                                                         {Body}
                                                                     </div>
                                                                 </div>
@@ -560,8 +560,8 @@
 
 
                                             {block:Chat}
-                                            <div class="post-content">
-                                                {block:Title}<h2 class="title"><a href="{Permalink}">{Title}</a></h2>{/block:Title}
+                                            <div class="post-content e-content">
+                                                {block:Title}<h2 class="title p-name"><a href="{Permalink}">{Title}</a></h2>{/block:Title}
                                                 <ul class="conversation">
                                                 {block:Lines}
                                                     <li class="chat-{Alt}">{block:Label}<span class="label">{Label}</span>{/block:Label} {Line}</li>
@@ -572,14 +572,14 @@
 
 
                                             {block:Audio}
-                                            <div class="post-content {block:Caption}with-caption{/block:Caption}">
+                                            <div class="post-content e-content {block:Caption}with-caption{/block:Caption}">
                                                 <div class="audio_container">
                                                     {block:AudioEmbed}
                                                         {AudioEmbed color="white"}
                                                     {/block:AudioEmbed}
                                                 </div>
                                                 {block:NotReblog}
-                                                    <div class="caption">
+                                                    <div class="caption e-summary">
                                                         {Caption}
                                                     </div>
                                                 {/block:NotReblog}
@@ -624,12 +624,12 @@
 
                                             {block:Video}
                                             <figure class="post-content {block:Caption}with-caption{/block:Caption}">
-                                                <div class="video-wrapper">
+                                                <div class="video-wrapper u-video">
                                                     {Video-700}
                                                 </div>
 
                                                 {block:NotReblog}
-                                                    <figcaption class="caption">
+                                                    <figcaption class="caption e-content">
                                                         {Caption}
                                                     </figcaption>
                                                 {/block:NotReblog}
@@ -761,7 +761,7 @@
                                                 {/block:PinnedPostLabel}
                                                 {block:HasTags}
                                                     {block:Tags}
-                                                         <a class="meta-item tag-link" href="{TagURL}">{Tag}</a>
+                                                         <a class="meta-item tag-link p-category" href="{TagURL}">{Tag}</a>
                                                     {/block:Tags}
                                                 {/block:HasTags}
                                             </section>
@@ -796,7 +796,7 @@
                                                                     {/block:PermalinkPage}
                                                                 </span>
                                                             {/block:NoteCount}
-                                                            <a href="{Permalink}" title="{TimeAgo}" class="meta-item post-date">{ShortMonth} {DayOfMonth}{DayOfMonthSuffix}, {Year}</a>
+                                                            <a href="{Permalink}" title="{TimeAgo}" class="meta-item post-date">{ShortMonth} {DayOfMonth}{DayOfMonthSuffix}, {Year}</a><time class="dt-published" datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}"></time>
                                                         </div>
                                                     </section>
 
@@ -1729,8 +1729,8 @@
 
                                         {block:Chat}
                                         <div class="post-content">
-                                            {block:Title}<h2 class="title"><a href="{Permalink}">{Title}</a></h2>{/block:Title}
-                                            <ul class="conversation">
+                                            {block:Title}<h2 class="title p-name"><a href="{Permalink}">{Title}</a></h2>{/block:Title}
+                                            <ul class="conversation e-content">
                                             {block:Lines}
                                                 <li class="chat-{Alt}">{block:Label}<span class="label">{Label}</span>{/block:Label} {Line}</li>
                                             {/block:Lines}
@@ -1740,14 +1740,14 @@
 
 
                                         {block:Audio}
-                                        <div class="post-content {block:Caption}with-caption{/block:Caption}">
+                                        <div class="post-content e-content {block:Caption}with-caption{/block:Caption}">
                                             <div class="audio_container">
                                                 {block:AudioEmbed}
                                                     {AudioEmbed color="white"}
                                                 {/block:AudioEmbed}
                                             </div>
                                             {block:NotReblog}
-                                                <div class="caption">
+                                                <div class="caption e-summary">
                                                     {Caption}
                                                 </div>
                                             {/block:NotReblog}
