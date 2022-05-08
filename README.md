@@ -1,9 +1,9 @@
-# Tumblr
-workspace to make Tumblr more Indieweb friendly 
+# tumblr
+workspace to make Tumblr more indieweb friendly 
 
-The first pass is to update the Tumblr template to use [microformats-2 markup](http://microformats.org/wiki/microformats2) for _post_ kinds.
+The first pass is to update the tumblr template to use microformats-2 markup for post kinds.
 
-An example Tumblr blog with this template is at https://indieweb-test.tumblr.com/
+An example tumblr blog with thsi template is at https://indieweb-test.tumblr.com/
 
 This parses like this: https://xray.p3k.app/parse?url=https%3A%2F%2Findieweb-test.tumblr.com&pretty=true
 
